@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-nunito-sans);
+  --font-mono: var(--font-montserrat);
+
+  --color-primary: #E6EBE6;
+  --color-secondary: #E7EEF3;
+
+
+  /* Font styles for desktop */
+  --text-h1: 64px;
+  --text-h1--line-height: 72px;
+  --text-h1--font-weight: 500;
+  --text-h2: 56px;
+  --text-h2--line-height: 64px;
+  --text-h2--font-weight: 500;
+  --text-h3: 48px;
+  --text-h3--line-height: 56px;
+  --text-h3--font-weight: 500;
+  --text-h4: 40px;
+  --text-h4--line-height: 48px;
+  --text-h4--font-weight: 500;
+  --text-h5: 32px;
+  --text-h5--line-height: 40px;
+  --text-h5--font-weight: 500;
+  --text-h6: 24px;
+  --text-h6--line-height: 32px;
+  --text-h6--font-weight: 500;
+  --text-xl: 20px;
+  --text-xl--line-height: 28px;
+  --text-xl--font-weight: 400;
+  --text-l: 18px;
+  --text-l--line-height: 26px;
+  --text-l--font-weight: 400;
+  --text-m: 16px;
+  --text-m--line-height: 22px;
+  --text-m--font-weight: 400;
+  --text-s: 14px;
+  --text-s--line-height: 20px;
+  --text-s--font-weight: 400;
+  --text-xs: 12px;
+  --text-xs--line-height: 18px;
+  --text-xs--font-weight: 400;
+
+  /* Font styles for mobile (mob) */
+  --text-h1-mob: 40px;
+  --text-h1-mob--line-height: 48px;
+  --text-h1-mob--font-weight: 500;
+  --text-h2-mob: 32px;
+  --text-h2-mob--line-height: 40px;
+  --text-h2-mob--font-weight: 500;
+  --text-h3-mob: 28px;
+  --text-h3-mob--line-height: 36px;
+  --text-h3-mob--font-weight: 500;
+  --text-h4-mob: 24px;
+  --text-h4-mob--line-height: 32px;
+  --text-h4-mob--font-weight: 500;
+  --text-h5-mob: 20px;
+  --text-h5-mob--line-height: 28px;
+  --text-h5-mob--font-weight: 500;
+  --text-h6-mob: 18px;
+  --text-h6-mob--line-height: 24px;
+  --text-h6-mob--font-weight: 500;
+  --text-xl-mob: 18px;
+  --text-xl-mob--line-height: 26px;
+  --text-xl-mob--font-weight: 400;
+  --text-l-mob: 16px;
+  --text-l-mob--line-height: 22px;
+  --text-l-mob--font-weight: 400;
+  --text-m-mob: 14px;
+  --text-m-mob--line-height: 20px;
+  --text-m-mob--font-weight: 400;
+  --text-s-mob: 12px;
+  --text-s-mob--line-height: 18px;
+  --text-s-mob--font-weight: 400;
+  --text-xs-mob: 10px;
+  --text-xs-mob--line-height: 16px;
+  --text-xs-mob--font-weight: 400;
+
+  --spacing: 4px;
+
+  --container-max-width-md: 712px;
+  --container-max-width-lg: 1172px;
+  --container-max-width-xl: 1712px;
+
+  --container-padding-inline-md: 16px;
+  --container-padding-inline-lg: 24px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility container {
+  margin-inline: auto;
+  padding-inline: var(--container-padding-inline-md);
+  max-width: var(--container-max-width-md);
+
+  @media (width >=48rem) {
+    padding-inline: var(--container-padding-inline-lg);
+    max-width: var(--container-max-width-lg);
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @media (width >=64rem) {
+    max-width: var(--container-max-width-xl);
+  }
 }

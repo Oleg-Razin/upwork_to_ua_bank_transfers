@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { FEES, UPWORK_ADDITIONAL_FEE, EP, MILITARY_TAX } from "@/app/lib/fees";
-import { getPbCourse, getMonoCourse } from "@/app/lib/courses";
+import { getExchangeRates } from "@/app/lib/courses";
 import type { FeesTypes } from "@/app/types/courses";
 import {
   WithdrawalMethod,
@@ -37,14 +37,13 @@ const Calc = () => {
   useEffect(() => {
     const fetchRates = async () => {
       try {
-        const [pbCourse, monoCourse] = await Promise.all([
-          getPbCourse(),
-          getMonoCourse()
-        ]);
-        setPbRate(pbCourse || null);
-        setMonoRate(monoCourse || null);
+        const rates = await getExchangeRates();
+        setPbRate(rates.pbUsdBuy);
+        setMonoRate(rates.monoUsdBuy);
       } catch (error) {
         console.error('Failed to fetch exchange rates:', error);
+        setPbRate(null);
+        setMonoRate(null);
       }
     };
     

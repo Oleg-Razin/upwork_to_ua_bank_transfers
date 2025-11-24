@@ -1,25 +1,36 @@
-import { CoursePb, CourseMono } from "../types/courses";
+import type { Courses } from "../types/courses";
 
-const ISO_USD = 840;
-const ISO_UAH = 980;
-
-export async function getPbCourse(): Promise<number | undefined> {
-  const res = await fetch(`https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=11`, {
-    next: { revalidate: 60 },
-  });
-  const data = (await res.json()) as Array<CoursePb>;
-  const course = data.find(course => course.ccy === 'USD')?.buy;
-  return Number(course);
+export async function getExchangeRates(): Promise<Courses> {
+  try {
+    const res = await fetch('/api/exchange-rates', {
+      next: { revalidate: 300 }, // Cache for 5 minutes
+    });
+    
+    if (!res.ok) {
+      throw new Error(`API error: ${res.status}`);
+    }
+    
+    const data = await res.json();
+    return {
+      pbUsdBuy: data.pbUsdBuy,
+      monoUsdBuy: data.monoUsdBuy,
+    };
+  } catch (error) {
+    console.error('Failed to fetch exchange rates:', error);
+    return {
+      pbUsdBuy: null,
+      monoUsdBuy: null,
+    };
+  }
 }
 
-export async function getMonoCourse(): Promise<number | undefined> {
-  const res = await fetch(`https://api.monobank.ua/bank/currency`, {
-    next: { revalidate: 60 },
-  });
+// Keep individual functions for backward compatibility
+export async function getPbCourse(): Promise<number | null> {
+  const rates = await getExchangeRates();
+  return rates.pbUsdBuy;
+}
 
-  const data = (await res.json()) as Array<CourseMono>;
-  const course = data.find(course =>
-    (course.currencyCodeA === ISO_USD && course.currencyCodeB === ISO_UAH)
-  );
-  return course?.rateBuy;
+export async function getMonoCourse(): Promise<number | null> {
+  const rates = await getExchangeRates();
+  return rates.monoUsdBuy;
 }

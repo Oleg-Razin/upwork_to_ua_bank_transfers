@@ -142,7 +142,7 @@ const Calc = () => {
   const monoFinalAmount = monoAmount - monoTaxes.total;
 
   return (
-    <div className="p-6 mx-auto md:flex md:gap-6">
+    <div className="md:flex md:gap-6">
       {/* Contract Type Selection */}
       <div className="md:w-6/12 lg:w-8/12 bg-secondary p-6 md:p-10 space-y-6 shadow-sm">
         <div>

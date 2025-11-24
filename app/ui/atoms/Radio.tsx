@@ -1,4 +1,4 @@
-interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label: string;
   name: string;
   value: string | number;

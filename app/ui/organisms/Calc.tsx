@@ -23,11 +23,11 @@ const Calc = () => {
   );
   const [upworkFeeRate, setUpworkFeeRate] = useState(ContractFees.Ten);
 
-  const [hourlyRate, setHourlyRate] = useState(25);
-  const [hoursWorked, setHoursWorked] = useState(40);
+  const [hourlyRate, setHourlyRate] = useState('25');
+  const [hoursWorked, setHoursWorked] = useState('40');
 
   // Fixed contract field
-  const [fixedAmount, setFixedAmount] = useState(1000);
+  const [fixedAmount, setFixedAmount] = useState('1000');
 
   // Exchange rates state
   const [pbRate, setPbRate] = useState<number | null>(null);
@@ -73,9 +73,13 @@ const Calc = () => {
 
   // Calculated values using useMemo for derived state
   const grossAmount = useMemo(() => {
+    const rate = parseFloat(hourlyRate) || 0;
+    const hours = parseFloat(hoursWorked) || 0;
+    const fixed = parseFloat(fixedAmount) || 0;
+    
     return contractType === ContractType.Hourly
-      ? hourlyRate * hoursWorked
-      : fixedAmount;
+      ? rate * hours
+      : fixed;
   }, [contractType, hourlyRate, hoursWorked, fixedAmount]);
 
   const upworkFee = useMemo(() => {
@@ -207,17 +211,19 @@ const Calc = () => {
               label="Ставка за годину (USD):"
               type="number"
               value={hourlyRate}
-              onChange={(e) => setHourlyRate(Number(e.target.value))}
+              onChange={(e) => setHourlyRate(e.target.value)}
               min="0"
               step="0.5"
+              placeholder="25"
             />
             <Input
               label="Кількість годин:"
               type="number"
               value={hoursWorked}
-              onChange={(e) => setHoursWorked(Number(e.target.value))}
+              onChange={(e) => setHoursWorked(e.target.value)}
               min="0"
               step="0.1"
+              placeholder="40"
             />
           </div>
         ) : (
@@ -226,9 +232,10 @@ const Calc = () => {
               label="Фіксована сума (USD):"
               type="number"
               value={fixedAmount}
-              onChange={(e) => setFixedAmount(Number(e.target.value))}
+              onChange={(e) => setFixedAmount(e.target.value)}
               min="0"
               step="0.01"
+              placeholder="1000"
             />
           </div>
         )}

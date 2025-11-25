@@ -349,7 +349,7 @@ const Calc = () => {
                     <span>-{pbTaxes.epTax.toFixed(2)} грн</span>
                   </div>
                   <div className="flex justify-between text-sm text-red-600">
-                    <span>Військовий збір (1.5%):</span>
+                    <span>Військовий збір (1%):</span>
                     <span>-{pbTaxes.militaryTax.toFixed(2)} грн</span>
                   </div>
                   <hr className="border-gray-300 my-2" />
@@ -376,7 +376,7 @@ const Calc = () => {
                     <span>-{monoTaxes.epTax.toFixed(2)} грн</span>
                   </div>
                   <div className="flex justify-between text-sm text-red-600">
-                    <span>Військовий збір (1.5%):</span>
+                    <span>Військовий збір (1%):</span>
                     <span>-{monoTaxes.militaryTax.toFixed(2)} грн</span>
                   </div>
                   <hr className="border-gray-300 my-2" />

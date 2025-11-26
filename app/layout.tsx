@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Nunito_Sans } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleTagManager } from '@next/third-parties/google'
-
+import { Analytics } from "@vercel/analytics/next"
 import Header from "./ui/organisms/Header";
 import Footer from "./ui/organisms/Footer";
 import "./globals.css";
@@ -55,6 +55,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

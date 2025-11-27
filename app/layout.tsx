@@ -36,7 +36,13 @@ export const metadata: Metadata = {
     description: "Точний розрахунок суми до отримання з урахуванням всіх комісій та податків",
     type: "website",
     locale: "uk_UA",
-    images: [{ url: "/icon1.png", width: 192, height: 192 }],
+    images: [{ url: "/social.jpg", width: 1200, height: 630, alt: "Калькулятор виводу коштів з Upwork в Україну" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Калькулятор виводу коштів з Upwork",
+    description: "Точний розрахунок суми до отримання з урахуванням всіх комісій та податків",
+    images: ["/social.jpg"],
   },
 };
 
